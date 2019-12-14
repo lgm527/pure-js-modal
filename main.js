@@ -1,4 +1,4 @@
-// Context: At BounceX we often execute complex problems using entirely front-end JavaScript. For this challenge your solution should work if it is pasted directly into the JavaScript console of the browser after the page has fully loaded. Feel free to use jQuery. Also, our BounceX products must work across all browsers, but we will be testing your challenge in Chrome.
+// Context: We often execute complex problems using entirely front-end JavaScript. For this challenge your solution should work if it is pasted directly into the JavaScript console of the browser after the page has fully loaded. Feel free to use jQuery. Also, our products must work across all browsers, but we will be testing your challenge in Chrome.
 
 // Go to www.marmot.com and add at least 2 products to your cart. Then return to the home page.
 
