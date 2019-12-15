@@ -42,20 +42,43 @@ function parseCartData(xml) {
 }
 
 function contentOverlay(numberOfItems, cartTotal, ImagesArray) {
+  //convert to createElement, set innerText, and append (instead of set innerHTML and append for performance optimization)
   let overlay_black = 'position:fixed;top:0%;left:0%;width:100%;height:100%;background:black;z-index:1001;opacity:0.5;-webkit-opacity:0.5;';
   $('body').append(`<div class="modal" style="${overlay_black}"></div>`);
-  let overlay_white = 'position:fixed;top:40%;left:45%;padding:50px;background-color:white;z-index:1002;overflow:auto;';
-  let btn_close = 'float:right;font-size:36px;padding-left:5px;';
-  let btn_cart = 'float:left;font-size:36px;padding-right:5px;';
-  let imgDiv = 'justify-content:space-evenly;'
+  let overlay_white = 'position:fixed;top:50%;left:50%;transform:translate(-50%, -50%);background-color:white;z-index:1002;overflow:auto;';
+  let btn_close = 'float:right;font-size:36px;color:gray;padding:5px;padding-right:10px;';
+  let btn_cart = 'float:right;color:gray;padding-top:15px;font-weight:bold;';
+  let title_style = 'float:left;font-size:36px;padding-right:300px;';
+  let img_div = 'justify-content:space-between;float:left;padding-top:0;padding-left:50px;padding-right:50px;padding-bottom:50px;width:50%;';
+  let cart_table = 'float:right;width:50%;border-left:1px solid #cbcbcb;padding-left:10%'
+  let hr_style = 'color:#cbcbcb;width:100%;opacity:.5;';
+  let contents_style = 'padding:50px;'
+  let align_right = 'text-align:right;'
+  let btn_checkout = 'background-color:#dd0000;color:white;text-align:center;font-weight:bold;padding-right:50px;padding-left:50px;padding-top:15px;padding-bottom:15px;margin-left:65%'
   $('body').append(`<div class="modal" style="${overlay_white}">
-  <a href="https://www.marmot.com/cart"><button style="${btn_cart}">Go To Cart</button></a>
-  <button style="${btn_close}" onclick="closeModal()">X</button>
-  <br></br><br></br>
-  <p>Number of Items in cart:${numberOfItems}</p>
-  <p>Cart Total $ ${cartTotal}</p>
-  <br></br>
-  <div style=${imgDiv}><img src="${ImagesArray[0]}"><img src="${ImagesArray[1]}"></div>
+    <button style="${btn_close}" onclick="closeModal()">✕</button>
+      <div style="${contents_style}">
+        <span style="${title_style}">Items Added to Cart</span>
+        <a href="https://www.marmot.com/cart"><button style="${btn_cart}">Edit Cart</button></a>
+        <br></br><br></br>
+        <hr style=${hr_style}>
+        <br></br>
+        <div style=${img_div}><img src="${ImagesArray[0]}"><img src="${ImagesArray[1]}"></div>
+
+        <table style="${cart_table}">
+          <tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr><td>${numberOfItems} items</td></tr>
+          <tr></tr><tr></tr><tr></tr><tr></tr>
+          <tr><td>Subtotal</td> <td style="${align_right}">${cartTotal.toFixed(2)}</td></tr>
+          <tr><td>Estimated Shipping</td> <td style="${align_right}">-</td></tr>
+          <tr><td>Sales Tax</td> <td style="${align_right}">-</td></tr>
+          <tr><td>Estimated Total</td> <td style="${align_right}">${cartTotal.toFixed(2)}</td></tr>
+        </table>
+
+        <a href="https://www.marmot.com/checkoutlogin"><button style="${btn_checkout}">CHECKOUT</button></a>
+
+      </div>
+
   </div>`);
 }
 
@@ -81,6 +104,7 @@ $(window).scroll(function() {
 });
 
 //----------
+//<span style="display: inline-block; width:2px; height:100%; background:#000;"></span>
 
 let bottomTenPercentPageHeight = document.documentElement.scrollHeight*.9
 
