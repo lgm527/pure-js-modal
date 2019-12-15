@@ -103,10 +103,11 @@ $(window).scroll(function() {
    }
 });
 
-//----------
-//<span style="display: inline-block; width:2px; height:100%; background:#000;"></span>
+//--------------------------------------------------------------------------------
 
-let bottomTenPercentPageHeight = document.documentElement.scrollHeight*.9
+// <span style="display: inline-block; width:2px; height:100%; background:#000;"></span>
+
+// let bottomTenPercentPageHeight = document.documentElement.scrollHeight*.9
 
 // The trigger should show a centered overlay on top of the site that displays the information gathered above and two buttons. One button should close the overlay and the other should take the user to the cart page. It should have a style consistent with the website. Design matters.
 
@@ -115,3 +116,6 @@ let bottomTenPercentPageHeight = document.documentElement.scrollHeight*.9
 // BONUS
 
 // 1. Explain potential problems that could arise if this snippet had more or less than the 2 items in the cart. How would you address those problems?
+
+// I would refactor the contentOverlay function. Specifically I would edit it to have new HTML elements being created (createElement()) and then set the innerText instead of setting the innerHTML to all elements, as innerHTML is slower since it needs to parse the text, opposed to innerText which is just text.
+// I would also make sure the img tags were being dynamically created (instead of how it is currently statically typed) to allow for more than 2 items in the cart.
